@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINMAS PREMIUM</title>
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --accent-gold: #c5a059;
+            --card-grad: linear-gradient(145deg, #16213e, #0f172a);
+        }
+        body { font-family: 'Times New Roman', serif; margin: 0; background: #000; color: #fff; }
+        nav { background: rgba(10, 14, 23, 0.9); border-bottom: 1px solid var(--accent-gold); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 100; }
+        .nav-link { color: var(--accent-gold); text-decoration: none; margin: 0 15px; text-transform: uppercase; font-size: 14px; }
+        
+        .main-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 20px; padding: 20px; max-width: 1400px; margin: auto; }
+        .premium-window { background: var(--card-grad); border-radius: 15px; padding: 20px; border: 1px solid rgba(197, 160, 89, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .principles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .principle-card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid rgba(197,160, 89, 0.1); text-align: center; }
+        .principle-card h3 { color: var(--accent-gold); margin-top: 0; text-transform: uppercase; font-size: 16px; }
+        .principle-card p { font-size: 12px; line-height: 1.4; color: #ccc; }
+
+        .scroll-box { max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .scroll-box img { width: 100%; border-radius: 8px; border: 1px solid #333; }
+        
+        .video-slider { position: relative; overflow: hidden; border-radius: 10px; background: #000; }
+        .v-track { display: flex; transition: 0.5s; }
+        .v-item { min-width: 100%; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--accent-gold); border: none; padding: 10px; cursor: pointer; z-index: 10; font-weight: bold; }
+        .next { right: 0; } .prev { left: 0; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-link">Каталог</a>
+    <a href="#" class="nav-link">О компании</a>
+    <a href="#" class="nav-link">Проекты</a>
+    <a href="#" class="nav-link">Контакты</a>
+</nav>
+
+<div class="main-layout">
+    <div class="premium-window">
+        <h2 style="color: var(--accent-gold); text-align: center;">НАШИ ЦЕННОСТИ</h2>
+        <div class="principles-grid">
+            <div class="principle-card"><h3>Лидерство</h3><p>МЫ ДЕМОНСТРИРУЕМ ИНИЦИАТИВУ И БЕРЕМ ОТВЕТСТВЕННОСТЬ</p></div>
+            <div class="principle-card"><h3>Честность</h3><p>МЫ СОЗДАЕМ АТМОСФЕРУ ДОВЕРИЯ</p></div>
+            <div class="principle-card"><h3>Надежность</h3><p>МЫ - ОДНА КОМАНДА</p></div>
+            <div class="principle-card"><h3>Уважение</h3><p>ВНИМАТЕЛЬНОЕ ОТНОШЕНИЕ К ПАРТНЕРАМ</p></div>
+            <div class="principle-card" style="grid-column: span 2;"><h3>Основательность</h3><p>ВСЕ ЧТО МЫ ДЕЛАЕМ - МЫ ДЕЛАЕМ ХОРОШО!</p></div>
+        </div>
+    </div>
+
+    <div class="right-col">
+        <div class="premium-window" style="margin-bottom: 20px;">
+            <h2 style="font-size: 16px; color: var(--accent-gold);">Галерея</h2>
+            <div class="scroll-box">
+                <img src="09.png">
+                <img src="photo_43.jpg">
+                <img src="Безымянный.png" style="background: #fff; padding: 10px; width: 80%; margin: auto;">
+            </div>
+        </div>
+
+        <div class="premium-window">
+            <h2 style="font-size: 16px; color: var(--accent-gold);">Видео</h2>
+            <div class="video-slider">
+                <button class="nav-btn prev" onclick="move(-1)">&#10094;</button>
+                <div class="v-track" id="v-track">
+                    <div class="v-item"><video controls width="100%"><source src="video_2025-1.mp4.mp4"></video></div>
+                    <div class="v-item"><video controls width="100%"><source src="video_2025-2.mp4.mp4"></video></div>
+                    <div class="v-item"><video controls width="100%"><source src="video_2025-3.mp4.mp4"></video></div>
+                    <div class="v-item"><video controls width="100%"><source src="video_2025-4.mp4.mp4"></video></div>
+                    <div class="v-item"><video controls width="100%"><source src="video_2025-5.mp4.mp4"></video></div>
+                    <div class="v-item"><video controls width="100%"><source src="video_2025-6.mp4.mp4"></video></div>
+                </div>
+                <button class="nav-btn next" onclick="move(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cur = 0;
+    function move(s) {
+        cur = (cur + s + 6) % 6;
+        document.getElementById('v-track').style.transform = `translateX(-${cur * 100}%)`;
+        document.querySelectorAll('video').forEach(v => v.pause());
+    }
+</script>
+
+</body>
+</html>
